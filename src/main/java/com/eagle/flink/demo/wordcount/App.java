@@ -1,4 +1,4 @@
-package com.eagle.flink.demo;
+package com.eagle.flink.demo.wordcount;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +15,7 @@ import org.apache.flink.streaming.api.functions.sink.SinkFunction;
  * @Version 1.0
  **/
 @Slf4j
-public class WordCount {
+public class App {
 
     public static void main(String[] args) throws Exception {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();

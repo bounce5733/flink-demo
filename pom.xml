@@ -20,6 +20,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.eagle.micro</groupId>
+            <artifactId>micro-model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.0.13</version>
@@ -80,65 +86,21 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version><!--$NO-MVN-MAN-VER$-->
-                <executions>
-                    <execution>
-                        <id>TodayPutoutAmount</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                        <configuration>
-                            <classifier>IndexAmount</classifier>
-                            <archive>
-                                <manifestEntries>
-                                    <program-class>com.eagle.flink.demo.TodayPutoutAmount</program-class>
-                                </manifestEntries>
-                            </archive>
-
-                            <includes>
-                                <include>com/eagle/flink/demo/**</include>
-                            </includes>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>TodayApplyCount</id>
+                        <id>ApplyCount</id>
                         <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
                         </goals>
                         <configuration>
                             <shadeTestJar>false</shadeTestJar>
-                            <finalName>TodayApplyCount</finalName>
+                            <finalName>进件统计</finalName>
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.eagle.flink.demo.TodayApplyCount</mainClass>
-                                </transformer>
-                            </transformers>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>TodayPutoutAmount</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <shadeTestJar>false</shadeTestJar>
-                            <finalName>TodayPutoutAmount</finalName>
-                            <transformers>
-                                <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.eagle.flink.demo.TodayPutoutAmount</mainClass>
+                                    <mainClass>com.eagle.flink.demo.applycount.App</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

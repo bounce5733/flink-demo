@@ -1,4 +1,4 @@
-package com.eagle.flink.demo.window;
+package com.eagle.flink.demo.applycount;
 
 import org.apache.flink.api.common.ExecutionConfig;
 import org.apache.flink.api.common.typeutils.TypeSerializer;
@@ -8,13 +8,11 @@ import org.apache.flink.streaming.api.windowing.triggers.ProcessingTimeTrigger;
 import org.apache.flink.streaming.api.windowing.triggers.Trigger;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Date;
 
 /**
  * 当天(0-24)时间窗口
@@ -25,26 +23,13 @@ import java.util.Date;
  **/
 public class TodayWindow extends WindowAssigner<Object, TimeWindow> {
 
-    // 获得某天最大时间 23:59:59
-    private static Date getEndOfDay(Date date) {
-        LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(date.getTime()), ZoneId.systemDefault());
-        LocalDateTime endOfDay = localDateTime.with(LocalTime.MAX);
-        return Date.from(endOfDay.atZone(ZoneId.systemDefault()).toInstant());
-    }
-
-    // 获得某天最小时间 00:00:00
-    private static Date getStartOfDay(Date date) {
-        LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(date.getTime()), ZoneId.systemDefault());
-        LocalDateTime startOfDay = localDateTime.with(LocalTime.MIN);
-        return Date.from(startOfDay.atZone(ZoneId.systemDefault()).toInstant());
-    }
-
     // 窗口分配的主要方法，需要为每一个元素指定所属的分区
     @Override
     public Collection<TimeWindow> assignWindows(Object t, long l, WindowAssignerContext windowAssignerContext) {
-        Date date = new Date();
-        //分配窗口
-        return Collections.singletonList(new TimeWindow(getStartOfDay(date).getTime(), getEndOfDay(date).getTime()));
+        LocalDateTime now = LocalDateTime.now();
+        long start = now.with(LocalTime.MIN).toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        long end = now.with(LocalTime.MAX).toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        return Collections.singletonList(new TimeWindow(start, end));
     }
 
     @Override

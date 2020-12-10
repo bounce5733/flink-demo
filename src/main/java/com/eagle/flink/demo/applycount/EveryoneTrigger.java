@@ -1,6 +1,6 @@
-package com.eagle.flink.demo.trigger;
+package com.eagle.flink.demo.applycount;
 
-import com.eagle.flink.demo.model.IndexEvent;
+import com.eagle.micro.model.flink.IndexSource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.flink.streaming.api.windowing.triggers.Trigger;
 import org.apache.flink.streaming.api.windowing.triggers.TriggerResult;
@@ -14,10 +14,10 @@ import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
  * @Version 1.0
  **/
 @Slf4j
-public class EveryoneTrigger extends Trigger<IndexEvent, TimeWindow> {
+public class EveryoneTrigger extends Trigger<IndexSource, TimeWindow> {
 
     @Override
-    public TriggerResult onElement(IndexEvent indexEvent, long l, TimeWindow timeWindow, TriggerContext triggerContext) {
+    public TriggerResult onElement(IndexSource indexSource, long l, TimeWindow timeWindow, TriggerContext triggerContext) {
         return TriggerResult.FIRE;
     }
 

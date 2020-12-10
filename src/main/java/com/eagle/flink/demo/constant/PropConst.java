@@ -18,6 +18,5 @@ public class PropConst {
     public static final String FLINK_SINK_PARALLELISM = "flink.sink.parallelism";
 
     public static final String PROPERTIES_FILE_NAME = "/application.properties";
-    public static final String CONSUMER_FROM_TIME = "consumer.from.time";
 
 }

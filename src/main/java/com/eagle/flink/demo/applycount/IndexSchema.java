@@ -1,8 +1,7 @@
-package com.eagle.flink.demo.schema;
+package com.eagle.flink.demo.applycount;
 
-import com.eagle.flink.demo.constant.GlobalConst;
-import com.eagle.flink.demo.model.IndexEvent;
-import com.eagle.flink.demo.model.IndexSource;
+import com.eagle.micro.model.flink.IndexEvent;
+import com.eagle.micro.model.flink.IndexSource;
 import com.google.gson.Gson;
 import org.apache.flink.api.common.serialization.DeserializationSchema;
 import org.apache.flink.api.common.serialization.SerializationSchema;
@@ -31,6 +30,6 @@ public class IndexSchema implements DeserializationSchema<IndexSource>, Serializ
 
     @Override
     public byte[] serialize(IndexEvent indexEvent) {
-        return new Gson().toJson(indexEvent).getBytes(Charset.forName(GlobalConst.CODING));
+        return new Gson().toJson(indexEvent).getBytes(Charset.forName("UTF-8"));
     }
 }
