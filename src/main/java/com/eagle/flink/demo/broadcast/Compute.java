@@ -1,4 +1,4 @@
-package com.eagle.flink.demo.applycount;
+package com.eagle.flink.demo.broadcast;
 
 import com.eagle.micro.model.flink.IndexSource;
 import lombok.extern.slf4j.Slf4j;

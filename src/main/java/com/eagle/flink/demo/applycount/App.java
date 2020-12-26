@@ -1,6 +1,5 @@
 package com.eagle.flink.demo.applycount;
 
-import com.eagle.flink.demo.applycount.model.ComputeModel;
 import com.eagle.flink.demo.constant.PropConst;
 import com.eagle.flink.demo.utils.ExecutionEnvUtil;
 import com.eagle.flink.demo.utils.KafkaUtil;

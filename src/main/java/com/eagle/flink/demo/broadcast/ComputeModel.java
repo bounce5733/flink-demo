@@ -1,10 +1,4 @@
-package com.eagle.flink.demo.applycount.model;/**
- * TODO
- *
- * @author: yh.jiang
- * @time: 2020/12/10 10:13
- */
-
+package com.eagle.flink.demo.broadcast;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
